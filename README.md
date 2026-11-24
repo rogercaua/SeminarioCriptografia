@@ -1,7 +1,7 @@
 # VITRAL-256 Dados: criptografia de qualquer tipo de dado
 
-Versão independente da VITRAL-256 anterior (só imagens, pasta `vitral256`, fora deste repositório). A cifra de bloco é a mesma; o que mudou é o que entra nela:
-texto digitado, imagem, áudio, vídeo, PDF, planilha, ZIP ou qualquer outro arquivo. As duas podem rodar ao mesmo tempo.
+Cifra simétrica derivada do AES-256 para texto digitado, imagem, áudio, vídeo, PDF, planilha, ZIP ou qualquer outro arquivo.
+Inclui painel local, esteganografia, análise de ataques, métricas e detecção de anomalias com IA.
 
 ```bash
 python3 -m venv .venv
@@ -11,13 +11,11 @@ python3 -m venv .venv
 .venv/bin/python app.py               # painel em http://127.0.0.1:8257
 ```
 
-| | `vitral256` | `vitral256-dados` |
-|---|---|---|
-| Entrada | pixels de uma imagem | bytes de qualquer arquivo, ou texto |
-| Saída | PNG de ruído | arquivo `.vtr`, e Base64 quando é curto |
-| Volta | mesmos pixels | mesmo arquivo, byte a byte, com o nome original |
-| Formato | `VTR1` | `VTR2` (um não abre o outro) |
-| Porta | 8256 | 8257 |
+## Como funciona
+
+1. Você escreve um texto ou escolhe um arquivo, e informa uma senha.
+2. O conteúdo e o nome são cifrados juntos. A saída é um arquivo `.vtr`, e também Base64 quando é curta.
+3. Com a mesma senha, o arquivo volta idêntico, byte a byte, com o nome original. Senha errada ou arquivo alterado são recusados.
 
 Formato `VTR2`: `"VTR2"` (4 bytes), salt (16), IV/etiqueta (16) e o cifrado de `tamanho do nome (1) + nome + conteúdo`.
 Chaves por PBKDF2 (600.000 iterações), IV sintético por HMAC-SHA-256 do conteúdo inteiro e modo contador.
@@ -39,7 +37,7 @@ Conferir fora do painel (cerca de 40 KB/s): `.venv/bin/python conferir.py origin
 | ZIP | 7,923 | 7,9889 | 0,5% | 0,5% | 0% | 99,599% |
 
 Nas 30 trocas por tipo, 335 de 360 medidas (93%) ficaram na faixa de aceitação de 5%. O áudio teve NPCR em 24 de 30,
-abaixo do esperado; repetido com 1.500 trocas, deu 95,2%, o valor ideal.
+abaixo do esperado; repetido com 1.500 trocas, deu 95,2%, próximo do ideal de 95%.
 NIST SP 800-22: 11 de 11. Bits adulterados recusados: 6.440 de 6.440.
 
 ## Limites
