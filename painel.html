@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VITRAL-256 Dados</title>
+<style>
+:root{--coffee-bean:#230903;--ebony:#656256;--muted-teal:#9ebc9f;--tan:#d3b88c;--white-smoke:#f4f2f3;
+--linha:color-mix(in srgb,var(--ebony) 25%,#fff);--teal-claro:color-mix(in srgb,var(--muted-teal) 30%,#fff);--tan-claro:color-mix(in srgb,var(--tan) 35%,#fff)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--white-smoke);color:var(--coffee-bean);font:16px/1.5 system-ui,sans-serif}
+header{background:var(--coffee-bean);color:var(--white-smoke);padding:20px max(16px,calc((100% - 1148px)/2))}
+header h1{margin:0;font-size:26px}header p{margin:2px 0 0;color:var(--tan)}
+main{max-width:1180px;margin:0 auto;padding:0 16px 60px}
+[hidden]{display:none!important}
+.ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+.topo{position:sticky;top:0;z-index:1;background:var(--white-smoke);padding:14px 0;margin-bottom:6px}
+nav{display:flex;gap:4px;padding:4px;background:#fff;border:1px solid var(--linha);border-radius:14px}
+button,.botao{font:inherit;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 18px;border:1.5px solid var(--coffee-bean);border-radius:10px;background:var(--coffee-bean);color:var(--white-smoke);cursor:pointer;text-decoration:none;transition:background .15s,border-color .15s,transform .1s}
+button:hover,.botao:hover{background:var(--ebony);border-color:var(--ebony)}
+button:active,.botao:active{transform:translateY(1px)}
+.sec{background:#fff;color:var(--coffee-bean);border-color:var(--ebony)}
+.sec:hover{background:var(--tan-claro);border-color:var(--coffee-bean)}
+.mini{min-height:36px;padding:4px 12px;font-size:14px}
+nav button{flex:1;background:none;color:var(--ebony);border-color:transparent}
+nav button:hover{background:var(--teal-claro);color:var(--coffee-bean);border-color:transparent}
+nav button[aria-selected=true]{background:var(--muted-teal);color:var(--coffee-bean);border-color:transparent}
+button:disabled{opacity:.5;cursor:wait;transform:none}
+button[aria-busy=true]{opacity:1}
+button[aria-busy=true] .ico{display:none}
+button[aria-busy=true]::before{content:"";width:18px;height:18px;border:2.5px solid currentColor;border-right-color:transparent;border-radius:50%;animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(1turn)}}
+:focus-visible,.drop:has(:focus-visible){outline:3px solid var(--coffee-bean);outline-offset:2px}
+
+h2{margin:0 0 4px;font-size:22px}h3{margin:0 0 4px;font-size:17px}.painel h3{margin-top:22px}
+.nota{color:var(--ebony);margin:0 0 16px}
+.cartoes,.grade{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr))}
+.grade{grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}.grade>*,.cartoes>*{min-width:0}
+.cartao,.painel{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:20px}
+.cartao{display:flex;flex-direction:column;gap:14px;margin:0}.cartao .nota{margin:0}.cartao .acao{margin-top:auto}
+.cartao>label:not(.drop){margin-bottom:-10px}
+.alvo{margin-bottom:16px}
+.saida{scroll-margin-top:150px;margin-top:16px;background:#fff;border:1px solid var(--linha);border-radius:14px;padding:20px}.saida:empty{display:none}
+.saida .rola,.saida .proximo{grid-column:1/-1}.saida .proximo{display:flex;flex-wrap:wrap;gap:10px}
+label{font-weight:600;font-size:14px}
+.drop{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;min-height:84px;padding:14px;border:2px dashed var(--ebony);border-radius:12px;background:var(--white-smoke);transition:background .15s}
+.drop:hover,.drop.sobre{background:var(--tan-claro)}.drop.cheio{border-style:solid;background:var(--teal-claro)}
+.drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.drop span{grid-column:1;font-weight:400;color:var(--ebony);overflow-wrap:anywhere}.drop.cheio span{color:var(--coffee-bean)}
+.drop img{grid-column:2;grid-row:1/3;width:60px;height:60px;object-fit:cover;border-radius:8px}
+.drop+.mini{align-self:start;margin-top:-4px}
+.senha{display:flex;gap:8px}
+.senha input{flex:1;min-width:0;min-height:44px;font:inherit;color:inherit;padding:8px 12px;border:1.5px solid var(--ebony);border-radius:10px;background:#fff}
+figure{margin:0}figure img{width:100%;max-height:340px;object-fit:contain;background:var(--white-smoke);border-radius:8px;image-rendering:pixelated}
+figure>svg,.barras{display:block;width:100%;height:auto;padding:10px;background:var(--coffee-bean);border-radius:8px}
+figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:14px;color:var(--ebony);margin-top:6px}
+.msg{display:flex;gap:10px;margin:10px 0 0;padding:10px 14px;border-radius:10px;border:1.5px solid var(--ebony);background:var(--muted-teal);font-weight:600}.msg.erro{background:var(--tan);border-color:var(--coffee-bean)}
+.kpi{background:var(--teal-claro);border-radius:12px;padding:14px 16px}.kpi b{display:block;font-size:25px}.kpi span{font-size:14px}
+.rola{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:15px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--linha);white-space:nowrap}
+th{color:var(--ebony)}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.larga{grid-column:1/-1}.larga>.nota{margin:0 0 10px}
+.provas{list-style:none;margin:0;padding:0;display:grid;gap:8px}.provas li{display:flex;gap:10px;padding:10px 14px;border-radius:10px;background:var(--teal-claro)}.provas li.erro{background:var(--tan)}
+.provas li>div{min-width:0}.provas small{display:block;color:var(--ebony)}code{font-size:.9em;overflow-wrap:anywhere}
+.hex td,.hex th{padding:5px 6px;text-align:center;font-family:ui-monospace,monospace;font-size:13px}.hex th{text-align:left;font-family:inherit;position:sticky;left:0;background:#fff}
+.passos{display:flex;flex-wrap:wrap;gap:16px}.passos figure{flex:none}.passos figcaption{display:block;max-width:132px}
+.estado{display:grid;grid:repeat(4,30px)/auto-flow 30px;gap:2px;font:12px ui-monospace,monospace}.estado i{display:grid;place-items:center;font-style:normal;background:var(--white-smoke);border-radius:4px}.estado i.mudou{background:var(--tan)}
+.estado.mini{grid:repeat(4,14px)/auto-flow 14px;min-height:0;padding:0}.estado.mini i{font-size:0}
+input[type=range]{width:min(420px,100%);min-height:44px;accent-color:var(--coffee-bean)}
+.tentativas img{width:40px;height:40px;object-fit:cover;image-rendering:pixelated;display:block;border-radius:4px}.tentativas tr.achou td{background:var(--teal-claro);font-weight:600}
+textarea{font:14px/1.4 ui-monospace,monospace;width:100%;min-height:96px;padding:8px 12px;border:1.5px solid var(--ebony);border-radius:10px;color:inherit;resize:vertical}
+@media (max-width:640px){nav button{flex-direction:column;gap:2px;padding:6px 0;font-size:12px}.cartao,.painel,.saida{padding:16px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}button,.botao{transition:none}}
+.exemplos{display:flex;flex-wrap:wrap;gap:6px}textarea.texto{font:inherit}.ou{margin:0;font-size:14px;color:var(--ebony)}
+pre{margin:0;max-height:340px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;background:var(--white-smoke);border-radius:8px;font:14px/1.45 ui-monospace,monospace}
+figure audio,figure video{display:block;width:100%;max-height:340px}
+</style>
+<svg hidden>
+<symbol id="i-cadeado" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-aberto" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.5-2"/></symbol>
+<symbol id="i-camadas" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5zM3 13l9 5 9-5"/></symbol>
+<symbol id="i-raio" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+<symbol id="i-grafico" viewBox="0 0 24 24"><path d="M4 20V10M12 20V4M20 20v-7"/></symbol>
+<symbol id="i-sino" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
+<symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></symbol>
+</svg>
+<header><h1>VITRAL-256 Dados</h1><p>Criptografia de texto, imagem, áudio, vídeo, documento ou qualquer arquivo, com análise de ataques</p></header>
+<main>
+<div class="topo"><nav role="tablist" id="abas"></nav><div id="msg" role="status" aria-live="polite"></div></div>
+
+<section id="cifrar" data-aba="Cifrar" data-ico="cadeado">
+ <h2>Cifrar e decifrar</h2><p class="nota">Escreva um texto ou escolha qualquer arquivo de até 44 MiB. O conteúdo e o nome saem cifrados, e o arquivo volta idêntico, byte a byte.</p>
+ <div class="cartoes">
+ <form class="cartao"><h3>Cifrar</h3>
+  <label for="c-texto">Texto</label><textarea id="c-texto" class="texto" placeholder="Escreva aqui…"></textarea>
+  <p class="ou">ou um arquivo de qualquer tipo:</p>
+  <label class="drop">Arquivo<input type="file" id="c-arq"><span>Texto, imagem, áudio, vídeo, PDF, planilha, ZIP…</span><img alt="" hidden></label>
+  <div class="exemplos" data-ex="c-arq"></div>
+  <label for="c-senha">Senha</label><div class="senha"><input type="password" id="c-senha" autocomplete="off"></div>
+  <button id="c-cifrar" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-cadeado"/></svg>Cifrar</button></form>
+ <form class="cartao"><h3>Decifrar</h3>
+  <label class="drop">Arquivo cifrado (.vtr)<input type="file" id="d-arq"><span>Cifre ao lado, ou clique ou arraste um .vtr</span><img alt="" hidden></label>
+  <p class="ou">ou cole o cifrado em Base64:</p>
+  <label for="d-texto">Cifrado em Base64</label><textarea id="d-texto" spellcheck="false"></textarea>
+  <label for="d-senha">Senha usada para cifrar</label><div class="senha"><input type="password" id="d-senha" autocomplete="off"></div>
+  <button id="c-decifrar" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-aberto"/></svg>Decifrar</button></form>
+ </div>
+ <div class="grade saida" id="c-saida"></div>
+</section>
+
+<section id="estego" data-aba="Esconder" data-ico="camadas">
+ <h2>Esteganografia</h2><p class="nota">Cifra qualquer arquivo e o esconde nos bits menos significativos de uma imagem de capa. Cabe cerca de 1 byte a cada 2,7 pixels da capa.</p>
+ <div class="cartoes">
+ <form class="cartao"><h3>Esconder</h3>
+  <label class="drop">Arquivo secreto<input type="file" id="e-arq"><span>Clique ou arraste o arquivo a esconder</span><img alt="" hidden></label>
+  <label class="drop">Capa (imagem)<input type="file" accept="image/*" id="e-capa"><span>Clique ou arraste a imagem que ficará visível</span><img alt="" hidden></label>
+  <label for="e-senha">Senha</label><div class="senha"><input type="password" id="e-senha" autocomplete="off"></div>
+  <button id="e-esconder" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-camadas"/></svg>Esconder</button></form>
+ <form class="cartao"><h3>Extrair</h3>
+  <label class="drop">Capa com segredo<input type="file" accept="image/*" id="e-in"><span>Esconda ao lado, ou clique ou arraste uma capa com segredo</span><img alt="" hidden></label>
+  <label for="x-senha">Senha usada para esconder</label><div class="senha"><input type="password" id="x-senha" autocomplete="off"></div>
+  <button id="e-extrair" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-aberto"/></svg>Extrair</button></form>
+ </div>
+ <div class="grade saida" id="e-saida"></div>
+</section>
+
+<section id="ataques" data-aba="Atacar" data-ico="raio">
+ <h2>Ataques</h2><p class="nota">Os três primeiros ataques usam o arquivo cifrado abaixo; o diferencial usa um arquivo comum.</p>
+ <div class="cartao alvo"><label class="drop">Alvo: arquivo cifrado<input type="file" id="a-arq"><span>Cifre algo na aba Cifrar, ou clique ou arraste um .vtr</span><img alt="" hidden></label></div>
+ <div class="cartoes">
+ <form class="cartao"><h3>Dicionário de senhas</h3><p class="nota">Testa cada senha da lista contra o alvo, uma por vez. Inclua a sua para ver o dado exposto.</p>
+  <label for="a-lista">Senhas, uma por linha</label><textarea id="a-lista" spellcheck="false" autocomplete="off">123456
+senha
+12345678
+qwerty
+123456789
+brasil
+senha123
+admin
+111111
+flamengo
+abc123
+password
+1234
+futebol
+000000
+iloveyou
+mudar123
+recife
+cesar
+vitral</textarea>
+  <button id="a-dic" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg>Testar senhas</button></form>
+ <form class="cartao"><h3>Adulteração</h3><p class="nota">Troca 1 bit do alvo e tenta decifrar com a senha certa. A cifra deve recusar.</p>
+  <label for="a-senha">Senha para conferir</label><div class="senha"><input type="password" id="a-senha" autocomplete="off"></div>
+  <button id="a-adu" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg>Adulterar 1 bit</button></form>
+ <form class="cartao"><h3>Senhas erradas</h3><p class="nota">Erra a senha 8 vezes seguidas, para a IA gerar um alerta em Monitorar.</p>
+  <button id="a-raj" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg>8 senhas erradas</button></form>
+ <form class="cartao"><h3>Diferencial</h3><p class="nota">Troca 1 bit do arquivo, cifra as duas versões e compara. O mesmo ataque roda contra uma cifra fraca, como controle.</p>
+  <label class="drop">Arquivo comum (opcional)<input type="file" id="a-orig"><span>Vazio: usa a imagem de exemplo</span><img alt="" hidden></label>
+  <button id="a-dif" class="acao"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg>Comparar</button></form>
+ </div>
+ <div class="grade saida" id="a-saida"></div>
+</section>
+
+<section id="metr" data-aba="Métricas" data-ico="grafico"><div class="painel"><h2>Métricas do esquema</h2><p class="nota">Medidas por <code>metricas.py</code> e comparadas ao AES-256 no mesmo motor.</p><div id="m-saida"></div></div></section>
+<section id="monit" data-aba="Monitorar" data-ico="sino"><div class="painel"><h2>Eventos, IA e alertas</h2><p class="nota">Base simulada e eventos reais deste painel, analisados pela mesma rede neural.</p><div id="p-saida"></div></div></section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>`&#${c.charCodeAt(0)};`);
+const num=(v,d=2)=>v==null?"—":Number(v).toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
+const ico=n=>`<svg class="ico" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const secs=[...document.querySelectorAll("main>section")];
+$("abas").innerHTML=secs.map(s=>`<button role="tab" aria-controls="${s.id}">${ico(s.dataset.ico)}${s.dataset.aba}</button>`).join("");
+const abas=[...$("abas").children];
+function abrir(i){secs.forEach((s,j)=>s.hidden=i!==j);abas.forEach((b,j)=>b.setAttribute("aria-selected",i===j));$("msg").innerHTML="";if(i>2)carregar()}
+abas.forEach((b,i)=>b.onclick=()=>abrir(i));
+document.addEventListener("click",e=>{const b=e.target.closest("[data-ir]");if(b){abrir(+b.dataset.ir);scrollTo(0,0)}});
+document.querySelectorAll("form").forEach(f=>f.onsubmit=e=>e.preventDefault());
+function msg(t,ok){$("msg").innerHTML=t?`<p class="msg ${ok?"ok":"erro"}"><span aria-hidden="true">${ok?"✓":"⚠"}</span>${esc(t)}</p>`:""}
+async function api(rota,dados){
+  const r=await fetch("/api/"+rota,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dados)});
+  const j=await r.json();if(!r.ok)throw Error(j.erro);return j}
+const MAX=44*2**20+2**16;
+const ler=f=>new Promise((ok,no)=>{if(!f)return no(Error("escolha um arquivo"));if(!f.size)return no(Error("o arquivo está vazio"));if(f.size>MAX)return no(Error("arquivo grande demais (máximo de 44 MiB)"));
+  const r=new FileReader;r.onload=()=>ok(r.result);r.onerror=()=>no(Error("não foi possível ler o arquivo"));r.readAsDataURL(f)});
+const prontos={}; // arquivos já carregados na página, usados quando nenhum foi escolhido
+const arq=id=>$(id).files[0]||prontos[id];
+const pacote=(b64,nome,tipo="application/octet-stream")=>fetch(`data:${tipo};base64,${b64}`).then(r=>r.blob()).then(b=>new File([b],nome,{type:tipo}));
+const TIPOS={txt:"text/plain",bmp:"image/bmp",wav:"audio/wav",csv:"text/csv",pdf:"application/pdf",zip:"application/zip"};
+async function exemplo(nome){return new File([await (await fetch("/exemplo/"+nome)).blob()],nome,{type:TIPOS[nome.split(".").pop()]})}
+const dicas={};
+const urls=new WeakMap; // uma URL por arquivo, para não recriar a cada prévia
+const tam=n=>n<1024?n+" bytes":n<2**20?num(n/1024,1)+" KiB":num(n/2**20,1)+" MiB";
+const url=f=>{if(!urls.has(f))urls.set(f,URL.createObjectURL(f));return urls.get(f)};
+function previa(id){const d=$(id).parentElement,im=d.querySelector("img"),f=arq(id),ehImg=f&&f.type.startsWith("image/");
+  d.classList.toggle("cheio",!!f);d.querySelector("span").textContent=f?`${f.name} · ${tam(f.size)}`:dicas[id];
+  im.hidden=!ehImg;if(ehImg)im.src=url(f);else im.removeAttribute("src")}
+function usar(id,f){prontos[id]=f;$(id).value="";previa(id)}
+document.querySelectorAll(".drop").forEach(d=>{const i=d.querySelector("input");dicas[i.id]=d.querySelector("span").textContent;
+  i.onchange=()=>previa(i.id);d.querySelector("img").onerror=e=>e.target.hidden=true;
+  d.ondragenter=()=>d.classList.add("sobre");d.ondragleave=d.ondrop=()=>d.classList.remove("sobre")});
+document.querySelectorAll(".senha input").forEach(i=>{i.insertAdjacentHTML("afterend",'<button type="button" class="sec mini" aria-label="Mostrar senha" aria-pressed="false">Mostrar</button>');
+  const b=i.nextElementSibling;b.onclick=()=>{const v=i.type==="password";i.type=v?"text":"password";b.textContent=v?"Ocultar":"Mostrar";b.setAttribute("aria-pressed",v)}});
+document.querySelectorAll("[data-ex]").forEach(d=>{d.innerHTML=[["Texto","mensagem.txt"],["Imagem","imagem.bmp"],["Áudio","audio.wav"],["Tabela","tabela.csv"],["PDF","documento.pdf"],["ZIP","arquivos.zip"]].map(([t,n])=>`<button type="button" class="sec mini" data-nome="${n}" aria-label="Usar exemplo: ${t}">${t}</button>`).join("");
+  d.onclick=async e=>{const n=e.target.dataset.nome;if(!n)return;try{$("c-texto").value="";usar(d.dataset.ex,await exemplo(n));msg(`Exemplo carregado: ${n}.`,true)}catch{msg("não foi possível carregar o exemplo")}}});
+$("c-texto").oninput=()=>{if($("c-texto").value&&arq("c-arq"))usar("c-arq",undefined)};
+$("c-arq").addEventListener("change",()=>{if(arq("c-arq"))$("c-texto").value=""});
+$("d-arq").addEventListener("change",()=>{if(arq("d-arq"))$("d-texto").value=""});
+$("d-texto").oninput=()=>{if($("d-texto").value&&arq("d-arq"))usar("d-arq",undefined)};
+function acao(id,f){$(id).onclick=async()=>{const bs=[...document.querySelectorAll("section button")];bs.forEach(b=>b.disabled=true);$(id).setAttribute("aria-busy",true);msg("");
+  try{await f();const s=$(id).closest("section").querySelector(".saida");await Promise.all([...s.querySelectorAll("img")].map(i=>i.decode().catch(()=>{})));s.scrollIntoView()}catch(e){msg(e.message)}finally{bs.forEach(b=>b.disabled=false);$(id).removeAttribute("aria-busy")}}}
+const fig=(src,leg,nome)=>`<figure><img src="${src}" alt="${esc(leg)}"><figcaption>${esc(leg)}${nome?`<a class="botao sec mini" download="${nome}" href="${src}">${ico("baixar")}Baixar</a>`:""}</figcaption></figure>`;
+const baixar=f=>`<a class="botao sec mini" download="${esc(f.name)}" href="${url(f)}">${ico("baixar")}Baixar</a>`;
+async function ver(f,leg){ // prévia conforme o tipo; o que não tem prévia segue com o botão Baixar
+  let c="";const t=f.type,u=url(f);
+  if(t.startsWith("image/"))c=`<img src="${u}" alt="${esc(leg)}">`;
+  else if(t.startsWith("audio/"))c=`<audio controls src="${u}"></audio>`;
+  else if(t.startsWith("video/"))c=`<video controls src="${u}"></video>`;
+  else try{const s=new TextDecoder("utf-8",{fatal:true}).decode(await f.slice(0,20000).arrayBuffer(),{stream:true});if(/[\0-\x08]/.test(s)||t==="application/pdf")throw 0;c=`<pre>${esc(s)}${f.size>20000?"\n…":""}</pre>`}
+  catch{c=`<pre>${esc(f.name)}\n${tam(f.size)}\nSem prévia para este tipo.</pre>`}
+  return `<figure>${c}<figcaption>${esc(`${leg}: ${f.name} · ${tam(f.size)}`)}${baixar(f)}</figcaption></figure>`}
+const abrirDados=r=>pacote(r.dados,r.nome,r.tipo);
+function hist(h,cor,leg){const m=Math.max(...h);return `<figure><svg viewBox="0 0 256 90" role="img" aria-label="${esc(leg)}">${h.map((v,i)=>`<rect x="${i}" y="${88-86*v/m}" width="1" height="${86*v/m+2}" fill="${cor}"><title>valor ${i}: ${v}</title></rect>`).join("")}</svg><figcaption>${esc(leg)}</figcaption></figure>`}
+const tabela=(cab,linhas)=>`<div class="rola"><table><tr>${cab.map((c,i)=>`<th class="${i?"n":""}">${esc(c)}</th>`).join("")}</tr>${linhas.map(l=>`<tr>${l.map((c,i)=>`<td class="${i?"n":""}">${esc(c)}</td>`).join("")}</tr>`).join("")}</table></div>`;
+
+const hx=v=>v.toString(16).padStart(2,"0").toUpperCase();
+const prova=(ok,t,d)=>`<li class="${ok?"":"erro"}"><b aria-hidden="true">${ok?"✓":"✗"}</b><div><b>${ok?"":"FALHOU: "}${esc(t)}</b><small>${d}</small></div></li>`;
+const estado=(e,antes)=>`<div class="estado">${e.map((v,i)=>`<i class="${antes&&antes[i]!==v?"mudou":""}">${hx(v)}</i>`).join("")}</div>`;
+const linhaHex=(t,v)=>`<tr><th>${t}</th>${v.map(x=>`<td>${hx(x)}</td>`).join("")}</tr>`;
+function provar(r){const p=r.provas,c=p.conferencia,n=v=>v.toLocaleString("pt-BR");
+  return {ok:p.nome_ok&&p.sha_original===p.sha_volta&&!p.diferentes&&c.tamanho_ok&&c.etiqueta_ok&&c.certos===c.blocos&&p.fips,
+  html:`<div class="larga"><h3>Provas desta cifragem</h3><ul class="provas">`
+  +prova(r.mudou>0,`${num(r.mudou)}% dos bytes mudaram`,"Comparação byte a byte entre o original e o cifrado. O esperado ao acaso é perto de 99,61%; dados pequenos variam mais.")
+  +prova(p.nome_ok&&p.sha_original===p.sha_volta&&!p.diferentes,`O arquivo entregue decifra de volta, com o mesmo nome: ${n(p.diferentes)} de ${n(p.bytes)} bytes diferentes`,`SHA-256 original <code>${p.sha_original}</code><br>SHA-256 decifrada <code>${p.sha_volta}</code>`)
+  +prova(c.certos===c.blocos,`Segunda implementação concorda em ${n(c.certos)} de ${n(c.blocos)} blocos sorteados (o dado tem ${n(p.total_blocos)})`,"conferir.py foi escrito à parte, sem usar cifra.py. Para conferir todos: <code>python conferir.py original cifrado.vtr</code>")
+  +prova(c.etiqueta_ok&&c.tamanho_ok,"Etiqueta de integridade recalculada igual à do arquivo",`<code>${c.etiqueta}</code>, calculada sobre o nome e todo o conteúdo`)
+  +prova(p.fips,"O mesmo motor, com as tabelas do AES-256, devolve o resultado oficial da FIPS-197","Esperado <code>8ea2b7ca516745bfeafc49904b496089</code>")
+  +`</ul></div>`}}
+function rodadas(b){const p=b.passos,f=p[p.length-1].saida.slice(0,b.claro.length);
+  $("c-bloco").innerHTML=`<h3>Um bloco de verdade, passo a passo</h3><p class="nota">Bloco ${b.n.toLocaleString("pt-BR")}, no meio do dado (nome e conteúdo). Cada casa é um byte em hexadecimal; “·” é um byte sem letra legível.</p>
+  <div class="rola"><table class="hex"><tr><th>Como texto</th>${b.claro.map(x=>`<td>${x>32&&x<127?esc(String.fromCharCode(x)):"·"}</td>`).join("")}</tr>${linhaHex("Bytes originais",b.claro)}${linhaHex("⊕ Fluxo da cifra",f)}${linhaHex("= Bytes cifrados",b.cifrado)}</table></div>
+  <p class="nota" style="margin-top:14px">O fluxo sai do contador do bloco, transformado em ${p.length-1} rodadas. Mova o controle; em destaque, os bytes que mudaram em relação ao passo anterior. As subchaves aparecem aqui só para estudo: com elas se abre este dado.</p>
+  <label for="c-rod">Rodada <output id="c-rodn">0</output> de ${p.length-1}</label><br><input type="range" id="c-rod" min="0" max="${p.length-1}" value="0"><div class="passos" id="c-passos"></div>`;
+  const ver=()=>{const i=+$("c-rod").value,x=p[i],g=i?[["Entrada",p[i-1].saida],["1. Substituição (S-boxes da chave)",x.substituicao],["2. Permutação das linhas",x.permutacao],...(i<p.length-1?[["3. Mistura das colunas",x.mistura]]:[]),["Subchave",x.subchave,1],["Saída: ⊕ subchave",x.saida]]:[["Contador do bloco",x.entrada],["Subchave 0",x.subchave,1],["Saída: ⊕ subchave",x.saida]];
+    let antes=null;$("c-rodn").textContent=i;$("c-passos").innerHTML=g.map(([t,e,chave])=>{const h=`<figure>${estado(e,chave?null:antes)}<figcaption>${t}</figcaption></figure>`;if(!chave)antes=e;return h}).join("")};
+  $("c-rod").oninput=ver;ver()}
+acao("c-cifrar",async()=>{const t=$("c-texto").value,f=t?new File([t],"mensagem.txt",{type:"text/plain"}):arq("c-arq");if(!f)throw Error("escreva um texto ou escolha um arquivo");
+  const r=await api("cifrar",{dados:await ler(f),nome:f.name,senha:$("c-senha").value}),vtr=await pacote(r.pacote,r.nome),v=provar(r),A=r.antes,D=r.depois;
+  usar("d-arq",vtr);$("d-texto").value="";usar("a-arq",vtr);
+  const nota=A.entropia>7.5?" Este tipo já é compactado, por isso o original também parece aleatório.":"";
+  $("c-saida").innerHTML=await ver(f,"Original")+await ver(vtr,"Cifrado")
+  +(r.pacote.length<=20000?`<div class="larga"><label for="c-b64">Cifrado em Base64, para enviar como texto</label><textarea id="c-b64" readonly>${r.pacote}</textarea><div class="proximo"><button type="button" class="sec mini" id="c-copiar">Copiar</button></div></div>`:"")
+  +fig(A.mapa,"Primeiros bytes do original, um ponto por byte")+fig(D.mapa,"Primeiros bytes do cifrado")
+  +v.html+`<div class="larga" id="c-bloco"></div>`+hist(A.histograma,"var(--tan)",`Histograma original · entropia ${num(A.entropia,3)}`)+hist(D.histograma,"var(--muted-teal)",`Histograma cifrado · entropia ${num(D.entropia,3)}`)
+  +tabela(["Medida","Original","Cifrado"],[["Entropia (máx. 8 bits por byte)",num(A.entropia,4),num(D.entropia,4)],["Correlação entre bytes vizinhos",num(A.correlacao,4),num(D.correlacao,4)],["Blocos de 16 bytes repetidos",num(A.repetidos)+"%",num(D.repetidos)+"%"]])
+  +`<p class="nota larga">Com poucos bytes a entropia não chega a 8 nem em dado aleatório.${nota}</p><div class="proximo"><button class="sec" data-ir="2">${ico("raio")}Atacar este arquivo</button></div>`;rodadas(r.provas.bloco);
+  if($("c-copiar"))$("c-copiar").onclick=async()=>{try{await navigator.clipboard.writeText(r.pacote);msg("Copiado.",true)}catch{$("c-b64").select();msg("Texto selecionado: use Ctrl+C.",true)}};
+  msg(v.ok?"Cifrado e conferido. Já está pronto em Decifrar e na aba Atacar.":"Alguma prova falhou: não confie neste arquivo cifrado.",v.ok)});
+acao("c-decifrar",async()=>{const t=$("d-texto").value.replace(/\s/g,""),r=await api("decifrar",{dados:t?"data:,"+t:await ler(arq("d-arq")),senha:$("d-senha").value});
+  $("c-saida").innerHTML=await ver(await abrirDados(r),"Decifrado")+`<div class="larga"><ul class="provas">${prova(true,"Etiqueta de integridade conferida em todo o conteúdo",`SHA-256 do arquivo decifrado <code>${r.sha}</code>. Compare com o SHA-256 original mostrado ao cifrar.`)}</ul></div>`;msg("Íntegro e decifrado.",true)});
+acao("e-esconder",async()=>{const f=arq("e-arq"),capa=arq("e-capa"),r=await api("esconder",{dados:await ler(f),nome:f.name,capa:await ler(capa),senha:$("e-senha").value});
+  const e=await pacote(r.imagem.split(",")[1],"capa_com_segredo.png","image/png");usar("e-in",e);
+  $("e-saida").innerHTML=await ver(capa,"Capa original")+await ver(e,`Capa com segredo · PSNR ${num(r.psnr,1)} dB · ${num(r.uso,1)}% da capacidade`);msg("Arquivo escondido. Guarde a capa sem converter para JPEG.",true)});
+acao("e-extrair",async()=>{const r=await api("extrair",{dados:await ler(arq("e-in")),senha:$("x-senha").value});$("e-saida").innerHTML=await ver(await abrirDados(r),"Extraído e decifrado");msg("Arquivo recuperado.",true)});
+const alvo=async()=>{if(!arq("a-arq"))throw Error("cifre algo primeiro ou escolha um arquivo .vtr");return ler(arq("a-arq"))};
+async function tentativas(lista,parar){const src=await alvo();let achou=null,n=0;
+  $("a-saida").innerHTML=`<div class="larga"><h3>Tentativas, ao vivo</h3><p class="nota">Cada linha é uma tentativa real: deriva a chave da senha (600.000 iterações de PBKDF2), decifra o arquivo e recalcula a etiqueta. Só vale se ela for igual à do arquivo.</p><p class="nota" id="t-arq"></p><div class="rola"><table class="tentativas"><thead><tr><th>Nº</th><th>Senha</th><th>O que aparece</th><th>Chave obtida (início)</th><th>Etiqueta recalculada</th><th class="n">Tempo</th><th>Resultado</th></tr></thead><tbody id="t-linhas"></tbody></table></div></div>`;
+  $("a-saida").scrollIntoView();
+  for(const s of lista){const r=await api("tentar",{dados:src,senha:s});n++;
+    $("t-arq").innerHTML=`Etiqueta no arquivo: <code>${r.etiqueta}</code>`;
+    $("t-linhas").insertAdjacentHTML("afterbegin",`<tr class="${r.ok?"achou":""}"><td>${n}</td><td><code>${esc(s)}</code></td><td><img src="${r.mini}" alt="${r.ok?"dado recuperado":"ruído"}"></td><td><code>${r.chave}…</code></td><td><code>${r.calculada}</code></td><td class="n">${num(r.ms,0)} ms</td><td>${r.ok?"✓ igual: abriu":"✗ diferente"}</td></tr>`);
+    if(r.ok){achou=s;$("a-saida").insertAdjacentHTML("afterbegin",await ver(await abrirDados(r.achado),"Dado exposto pelo ataque"));if(parar)break}}
+  return {n,achou}}
+acao("a-dic",async()=>{const l=$("a-lista").value.split("\n").map(s=>s.replace(/\r$/,"")).filter(Boolean);if(!l.length)throw Error("escreva ao menos uma senha na lista");const r=await tentativas(l,true);
+  msg(r.achou?`Senha quebrada em ${r.n} tentativas: “${r.achou}”. Senha fraca derruba qualquer cifra.`:`Ataque falhou após ${r.n} senhas.`,!r.achou)});
+acao("a-adu",async()=>{const r=await api("adulterar",{dados:await alvo(),senha:$("a-senha").value}),bin=v=>v.toString(2).padStart(8,"0");
+  $("a-saida").innerHTML=await ver(await pacote(r.pacote,r.nome),"Arquivo com 1 bit trocado")+`<div class="larga"><h3>O que foi feito</h3><ul class="provas">`
+  +prova(true,`1 bit trocado no ${r.onde} do conteúdo`,`Byte cifrado <code>${bin(r.byte[0])}</code> → <code>${bin(r.byte[1])}</code> (${r.byte[0]} → ${r.byte[1]})`)
+  +prova(true,`Sem a etiqueta, o byte abriria errado: ${r.claro[0]} viraria ${r.claro[1]}`,"Decifrado com a senha certa, ignorando a etiqueta. O modo contador sozinho não percebe a troca.")
+  +prova(r.etiqueta!==r.calculada,"A etiqueta recalculada não bate",`No arquivo <code>${r.etiqueta}</code><br>Recalculada <code>${r.calculada}</code>`)
+  +prova(!!r.recusa,"A decifragem normal, com a senha certa, recusou o arquivo",`Resposta: “${esc(r.recusa||"nenhuma recusa")}”. Antes da troca, a mesma senha abriu o arquivo.`)+`</ul></div>`;
+  msg(r.recusa?`Adulteração recusada. Bit trocado no ${r.onde}.`:"Atenção: a adulteração passou.",!!r.recusa)});
+acao("a-raj",async()=>{const r=await tentativas(Array.from({length:8},(_,i)=>"errada-"+i));
+  $("a-saida").insertAdjacentHTML("beforeend",`<div class="proximo"><button class="sec" data-ir="4">${ico("sino")}Ver alerta em Monitorar</button></div>`);msg(r.achou?"Uma das senhas era a correta.":`${r.n} falhas de decifragem registradas.`,!r.achou)});
+acao("a-dif",async()=>{const f=arq("a-orig")||await exemplo("imagem.bmp"),r=await api("diferencial",{dados:await ler(f)}),n=v=>v.toLocaleString("pt-BR"),bits=v=>v.toString(2).replaceAll("0","").length;
+  $("a-saida").innerHTML=await ver(f,"Arquivo de partida")+fig(r.mapa,"VITRAL-256: diferença entre os dois cifrados (preto = igual)")+fig(r.controle_mapa,"Controle XOR repetida: diferença (só 1 byte muda)")+`<div class="larga"><h3>O que foi feito</h3><ul class="provas">`
+  +prova(r.byte[0]!==r.byte[1],`1 bit trocado no ${r.onde}: ${r.byte[0]} → ${r.byte[1]}`,"As duas versões foram cifradas com a mesma senha de teste e o mesmo salt, portanto com a mesma chave.")
+  +prova(r.ivs[0]!==r.ivs[1],"O IV mudou por inteiro",`<code>${r.ivs[0]}</code><br><code>${r.ivs[1]}</code><br>Ele sai de um HMAC de todo o conteúdo. É por isso que o cifrado inteiro muda.`)
+  +prova(r.saidas[0]!==r.saidas[1],"Primeiros 16 bytes cifrados de cada versão",`<code>${r.saidas[0]}</code><br><code>${r.saidas[1]}</code>`)+`</ul></div>`
+  +tabela(["Métrica","VITRAL-256","Aceitação (5%)","Controle: XOR repetida"],[["Bytes que mudaram",`${n(r.bytes)} de ${n(r.total)}`,"—",`${n(r.controle.bytes)} de ${n(r.total)}`],["NPCR",num(r.npcr,4)+"%","≥ "+num(r.npcr_min,4)+"%",num(r.controle.npcr,4)+"%"],["UACI",num(r.uaci,4)+"%",num(r.uaci_min,4)+" a "+num(r.uaci_max,4)+"%","—"]])
+  +`<div class="larga"><h3>Dentro da cifra de bloco</h3><p class="nota">Dois blocos que diferem em 1 bit, com a mesma chave. Cada quadro é o estado de 16 bytes após a rodada; em destaque, os bytes diferentes. O ideal é 64 dos 128 bits.</p><div class="passos">${r.rodadas.map((e,i)=>`<figure><div class="estado mini">${e.map(v=>`<i class="${v?"mudou":""}">${hx(v)}</i>`).join("")}</div><figcaption>Rodada ${i}<br>${e.reduce((s,v)=>s+bits(v),0)} de 128 bits</figcaption></figure>`).join("")}</div></div>`;
+  msg("1 bit mudou na entrada; compare o impacto na saída.",true)});
+
+function barras(serie){const m=Math.max(...serie.map(s=>s[1])),w=600/serie.length;
+  return `<svg class="barras" viewBox="0 0 600 130" role="img" aria-label="Eventos por dia">${serie.map(([t,n],i)=>`<rect x="${i*w+1}" y="${108-100*n/m}" width="${w-2}" height="${100*n/m}" fill="var(--muted-teal)"><title>${new Date(t*1e3).toLocaleDateString("pt-BR",{timeZone:"UTC"})}: ${n} eventos</title></rect>`+(i%7?"":`<text x="${i*w+1}" y="124" font-size="11" fill="var(--white-smoke)">${new Date(t*1e3).toLocaleDateString("pt-BR",{timeZone:"UTC",day:"2-digit",month:"2-digit"})}</text>`)).join("")}</svg>`}
+async function carregar(){let p;try{p=await (await fetch("/api/painel")).json()}catch(e){return msg("não foi possível carregar o painel")}
+  const M=p.metricas,kpi=(v,t)=>`<div class="kpi"><b>${v}</b><span>${t}</span></div>`;
+  if(!M)$("m-saida").textContent="Rode python metricas.py para gerar os resultados.";
+  else{const A=M.avalanche,S=M.sac_bic,I=M.tipos,ap=n=>Object.values(M.nist[n]).filter(t=>t.aprovadas>=96).length+"/"+Object.keys(M.nist[n]).length;
+  $("m-saida").innerHTML=`<ul class="provas" style="margin-bottom:16px">${prova(M.cifra_sha256===p.cifra_sha256,M.cifra_sha256===p.cifra_sha256?"Métricas medidas neste mesmo cifra.py":"cifra.py mudou depois da medição: rode python metricas.py",`SHA-256 medido <code>${M.cifra_sha256}</code><br>SHA-256 em disco <code>${p.cifra_sha256}</code>`)}</ul><div class="grade">${kpi(num(A["VITRAL-256"].texto.media)+"%","avalanche do texto (ideal 50%)")+kpi(num(I["imagem.bmp"].vitral.entropia,4),"entropia da imagem cifrada (máx. 8)")+kpi(num(I["imagem.bmp"].diferencial.npcr.media)+"%","NPCR (ideal 99,61%)")+kpi(M.integridade.bits_rejeitados+"/"+M.integridade.bits_testados,"bits adulterados recusados")}</div>
+  <h3>VITRAL-256 e AES-256</h3>`+tabela(["Métrica","VITRAL-256","AES-256","Ideal"],[["Avalanche, 1 bit do texto",...Object.values(A).map(x=>num(x.texto.media)+"%"),"50%"],["Avalanche, 1 bit da chave",...Object.values(A).map(x=>num(x.chave.media)+"%"),"50%"],["SAC (média)",...Object.values(S).map(x=>num(x.sac.media,4)),"0,5"],["BIC (média)",...Object.values(S).map(x=>num(x.bic_media,4)),num(S["VITRAL-256"].bic_media_ideal,4)],["Não linearidade da S-box",num(M.sbox.vitral_500.nao_linearidade.min,0),M.sbox.aes.nao_linearidade,"112"],["Uniformidade diferencial",num(M.sbox.vitral_500.uniformidade_diferencial.max,0),M.sbox.aes.uniformidade_diferencial,"4"],["NIST SP 800-22 (testes aprovados)",ap("VITRAL-256"),ap("AES-256"),"11/11"],["Vazão (MB/s, Python)",...Object.values(M.vazao_MB_s).map(x=>num(x,1)),"—"]])
+  +"<h3>Por tipo de dado</h3>"+tabela(["Arquivo","Tamanho","Entropia orig.","Entropia cifrada","Correl. orig.","Correl. cifrada","Repetidos orig.","ECB","VITRAL","NPCR","UACI"],Object.entries(I).map(([n,x])=>[n,tam(x.bytes),num(x.original.entropia,3),num(x.vitral.entropia,4),num(x.original.correlacao,3),num(x.vitral.correlacao,4),num(x.original.blocos_repetidos_pct,1)+"%",num(x.ecb.blocos_repetidos_pct,1)+"%",num(x.vitral.blocos_repetidos_pct,1)+"%",num(x.diferencial.npcr.media,3)+"%",num(x.diferencial.uaci.media,3)+"%"]))}
+  const ia=p.ia;
+  $("p-saida").innerHTML=`<div class="grade">${kpi(ia.eventos.toLocaleString("pt-BR"),"eventos simulados no SQLite")+kpi(ia.janelas.toLocaleString("pt-BR"),"janelas usuário × hora")+kpi(num(ia.ia.precisao*100,1)+"%","precisão da IA")+kpi(num(ia.ia.recall*100,1)+"%","anomalias detectadas")}</div>
+  <h3>Eventos por dia (base simulada)</h3>${barras(p.serie)}<h3>Eventos reais deste painel</h3>${Object.keys(p.reais).length?tabela(["Tipo","Quantidade"],Object.entries(p.reais)):"<p class=nota>Nenhum ainda.</p>"}
+  ${p.log.length?"<h3>Últimos eventos reais</h3>"+tabela(["Quando","Evento"],p.log.map(([t,e])=>[new Date(t*1e3).toLocaleString("pt-BR"),e])):""}
+  <h3>Alertas</h3>`+tabela(["Origem","Usuário","Hora","Anomalia","Contagem","Nota (limiar = 1)"],p.alertas.map(a=>[a.simulado?"simulado":"REAL",a.usuario,new Date(a.hora*1e3).toLocaleString("pt-BR",a.simulado?{timeZone:"UTC"}:{}),a.motivo,a.valor,num(a.nota,1)]))}
+abrir(0);
+</script>
+</html>

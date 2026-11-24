@@ -1,0 +1,766 @@
+{
+ "cifra_sha256": "6443966a726396966959bb2620293546684247fe9823d89cbd0af4d22316f188",
+ "sbox": {
+  "vitral_500": {
+   "nao_linearidade": {
+    "media": 112.0,
+    "desvio": 0.0,
+    "min": 112.0,
+    "max": 112.0,
+    "n": 500
+   },
+   "uniformidade_diferencial": {
+    "media": 4.0,
+    "desvio": 0.0,
+    "min": 4.0,
+    "max": 4.0,
+    "n": 500
+   },
+   "sac": {
+    "media": 0.50230126953125,
+    "desvio": 0.00396868232609279,
+    "min": 0.48828125,
+    "max": 0.51318359375,
+    "n": 500
+   },
+   "grau_algebrico": {
+    "media": 7.0,
+    "desvio": 0.0,
+    "min": 7.0,
+    "max": 7.0,
+    "n": 500
+   },
+   "pontos_fixos": {
+    "media": 0.0,
+    "desvio": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "n": 500
+   }
+  },
+  "aes": {
+   "nao_linearidade": 112,
+   "uniformidade_diferencial": 4,
+   "sac": 0.5048828125,
+   "grau_algebrico": 7,
+   "pontos_fixos": 0
+  }
+ },
+ "difusao": {
+  "ramos": 5,
+  "sboxes_ativas_4_rodadas": 25,
+  "peso_diferencial_4_rodadas": 150,
+  "ordens_validas_deslocamento": 24
+ },
+ "avalanche": {
+  "VITRAL-256": {
+   "texto": {
+    "media": 49.96796875,
+    "desvio": 4.404588768736497,
+    "min": 32.8125,
+    "max": 68.75,
+    "n": 20000
+   },
+   "chave": {
+    "media": 49.9981640625,
+    "desvio": 4.355308957095394,
+    "min": 32.03125,
+    "max": 65.625,
+    "n": 20000
+   }
+  },
+  "AES-256": {
+   "texto": {
+    "media": 50.001328125,
+    "desvio": 4.4188992520044215,
+    "min": 31.25,
+    "max": 67.96875,
+    "n": 20000
+   },
+   "chave": {
+    "media": 50.05953125,
+    "desvio": 4.4401877286247355,
+    "min": 32.8125,
+    "max": 67.1875,
+    "n": 20000
+   }
+  }
+ },
+ "avalanche_por_rodada": {
+  "VITRAL-256": {
+   "1": 3.146484375,
+   "2": 12.5896484375,
+   "3": 50.23046875,
+   "4": 50.069921875,
+   "5": 49.93359375,
+   "6": 49.9671875,
+   "7": 49.9537109375,
+   "8": 50.0021484375,
+   "9": 49.933203125,
+   "10": 49.896875,
+   "11": 49.9400390625,
+   "12": 50.004296875,
+   "13": 49.912890625,
+   "14": 50.0212890625,
+   "15": 49.8828125,
+   "16": 50.0072265625
+  },
+  "AES-256": {
+   "1": 3.1150390625,
+   "2": 12.5552734375,
+   "3": 50.1626953125,
+   "4": 50.007421875,
+   "5": 49.949609375,
+   "6": 49.8955078125,
+   "7": 50.016015625,
+   "8": 49.95546875,
+   "9": 49.8451171875,
+   "10": 49.9525390625,
+   "11": 49.878515625,
+   "12": 50.0880859375,
+   "13": 50.080859375,
+   "14": 50.0703125
+  }
+ },
+ "sac_bic": {
+  "VITRAL-256": {
+   "sac": {
+    "media": 0.4999178349971771,
+    "desvio": 0.007749488785933791,
+    "min": 0.470947265625,
+    "max": 0.52978515625,
+    "n": 16384
+   },
+   "sac_desvio_ideal": 0.0078125,
+   "bic_media": 0.012471904880561772,
+   "bic_media_ideal": 0.012466946262544772,
+   "bic_max": 0.07571701620803445
+  },
+  "AES-256": {
+   "sac": {
+    "media": 0.5000121295452118,
+    "desvio": 0.00782458145096193,
+    "min": 0.4716796875,
+    "max": 0.527587890625,
+    "n": 16384
+   },
+   "sac_desvio_ideal": 0.0078125,
+   "bic_media": 0.01246763242327096,
+   "bic_media_ideal": 0.012466946262544772,
+   "bic_max": 0.07561043875963995
+  }
+ },
+ "tipos": {
+  "mensagem.txt": {
+   "bytes": 41200,
+   "original": {
+    "entropia": 4.298637283662196,
+    "qui2": 641798.0582524273,
+    "qui2_p": 0.0,
+    "correlacao": 0.3915811569623496,
+    "blocos_repetidos_pct": 96.0
+   },
+   "vitral": {
+    "entropia": 7.995808756056498,
+    "qui2": 239.24194174757284,
+    "qui2_p": 0.7527005207900661,
+    "correlacao": 0.0001955232552442572,
+    "blocos_repetidos_pct": 0.0
+   },
+   "ecb": {
+    "entropia": 7.893694717795588,
+    "qui2": 5953.398058252427,
+    "qui2_p": 0.0,
+    "correlacao": 0.008677760685478776,
+    "blocos_repetidos_pct": 96.0
+   },
+   "xor": {
+    "entropia": 6.625581266628336,
+    "qui2": 95249.64038834952,
+    "qui2_p": 0.0,
+    "correlacao": -0.12521091571805915,
+    "blocos_repetidos_pct": 72.0
+   },
+   "diferencial": {
+    "npcr": {
+     "media": 99.61326860841423,
+     "desvio": 0.020155214055349806,
+     "min": 99.57038834951456,
+     "max": 99.6504854368932,
+     "n": 30
+    },
+    "uaci": {
+     "media": 33.46240719588806,
+     "desvio": 0.13128692218661345,
+     "min": 33.2613744526937,
+     "max": 33.807062630877596,
+     "n": 30
+    },
+    "criticos": {
+     "npcr_min": 99.55882194344471,
+     "npcr_ideal": 99.609375,
+     "uaci_min": 33.23504792526767,
+     "uaci_max": 33.692035408065664,
+     "uaci_ideal": 33.46354166666667
+    },
+    "npcr_aprovados": 30,
+    "uaci_aprovados": 29
+   }
+  },
+  "imagem.bmp": {
+   "bytes": 196662,
+   "original": {
+    "entropia": 4.762098035430385,
+    "qui2": 7980831.096419237,
+    "qui2_p": 0.0,
+    "correlacao": 0.6662336683639456,
+    "blocos_repetidos_pct": 89.12212187779676
+   },
+   "vitral": {
+    "entropia": 7.998995614627363,
+    "qui2": 273.44652245985503,
+    "qui2_p": 0.20404112415899248,
+    "correlacao": 0.0011129419061960933,
+    "blocos_repetidos_pct": 0.0
+   },
+   "ecb": {
+    "entropia": 7.524078878322392,
+    "qui2": 230228.4390204214,
+    "qui2_p": 0.0,
+    "correlacao": -0.060902448812418,
+    "blocos_repetidos_pct": 89.12212187779676
+   },
+   "xor": {
+    "entropia": 6.645002586195959,
+    "qui2": 1117399.790483164,
+    "qui2_p": 0.0,
+    "correlacao": -0.20744715171473624,
+    "blocos_repetidos_pct": 70.57196322512407
+   },
+   "diferencial": {
+    "npcr": {
+     "media": 99.6059906506256,
+     "desvio": 0.0159234188443074,
+     "min": 99.57490516724125,
+     "max": 99.64965270362347,
+     "n": 30
+    },
+    "uaci": {
+     "media": 33.467787038881546,
+     "desvio": 0.0418722616272402,
+     "min": 33.380335445646665,
+     "max": 33.54969938469129,
+     "n": 30
+    },
+    "criticos": {
+     "npcr_min": 99.58623646803689,
+     "npcr_ideal": 99.609375,
+     "uaci_min": 33.35895828241672,
+     "uaci_max": 33.56812505091661,
+     "uaci_ideal": 33.46354166666667
+    },
+    "npcr_aprovados": 25,
+    "uaci_aprovados": 30
+   }
+  },
+  "audio.wav": {
+   "bytes": 48044,
+   "original": {
+    "entropia": 7.483554902156629,
+    "qui2": 47967.05120306386,
+    "qui2_p": 0.0,
+    "correlacao": -0.006647775281953504,
+    "blocos_repetidos_pct": 49.067288474350434
+   },
+   "vitral": {
+    "entropia": 7.996642510742626,
+    "qui2": 222.1027391557739,
+    "qui2_p": 0.9325016504343473,
+    "correlacao": 0.004305276490405855,
+    "blocos_repetidos_pct": 0.0
+   },
+   "ecb": {
+    "entropia": 7.949498466812183,
+    "qui2": 3442.313124583611,
+    "qui2_p": 0.0,
+    "correlacao": 0.00895331556718912,
+    "blocos_repetidos_pct": 49.067288474350434
+   },
+   "xor": {
+    "entropia": 7.945153883771235,
+    "qui2": 4120.491882441096,
+    "qui2_p": 0.0,
+    "correlacao": 0.00012123368246622776,
+    "blocos_repetidos_pct": 27.41505662891406
+   },
+   "diferencial": {
+    "npcr": {
+     "media": 99.60487608581025,
+     "desvio": 0.025498286610126732,
+     "min": 99.56498209974191,
+     "max": 99.6586462409458,
+     "n": 30
+    },
+    "uaci": {
+     "media": 33.4668084756729,
+     "desvio": 0.14321210902614884,
+     "min": 33.07692621632784,
+     "max": 33.825961822577675,
+     "n": 30
+    },
+    "criticos": {
+     "npcr_min": 99.56256092484182,
+     "npcr_ideal": 99.609375,
+     "uaci_min": 33.25194767192321,
+     "uaci_max": 33.675135661410124,
+     "uaci_ideal": 33.46354166666667
+    },
+    "npcr_aprovados": 30,
+    "uaci_aprovados": 27
+   }
+  },
+  "tabela.csv": {
+   "bytes": 49593,
+   "original": {
+    "entropia": 3.9811881876907993,
+    "qui2": 828293.5636682597,
+    "qui2_p": 0.0,
+    "correlacao": 0.6373215483606568,
+    "blocos_repetidos_pct": 0.0
+   },
+   "vitral": {
+    "entropia": 7.996242205626276,
+    "qui2": 259.76986671506063,
+    "qui2_p": 0.40540126912982893,
+    "correlacao": -0.001587095959723583,
+    "blocos_repetidos_pct": 0.0
+   },
+   "ecb": {
+    "entropia": 7.996361645925791,
+    "qui2": 249.46886092287838,
+    "qui2_p": 0.5859491447573822,
+    "correlacao": -0.0036881177710561567,
+    "blocos_repetidos_pct": 0.0
+   },
+   "xor": {
+    "entropia": 6.594086626767007,
+    "qui2": 98959.30439779809,
+    "qui2_p": 0.0,
+    "correlacao": -0.490966336289077,
+    "blocos_repetidos_pct": 0.0
+   },
+   "diferencial": {
+    "npcr": {
+     "media": 99.60700098804266,
+     "desvio": 0.02439416035027679,
+     "min": 99.56445466094004,
+     "max": 99.65720968685096,
+     "n": 30
+    },
+    "uaci": {
+     "media": 33.45845588317664,
+     "desvio": 0.08549822413682409,
+     "min": 33.28910666155842,
+     "max": 33.62916097820573,
+     "n": 30
+    },
+    "criticos": {
+     "npcr_min": 99.56329782581363,
+     "npcr_ideal": 99.609375,
+     "uaci_min": 33.255278375773024,
+     "uaci_max": 33.67180495756031,
+     "uaci_ideal": 33.46354166666667
+    },
+    "npcr_aprovados": 30,
+    "uaci_aprovados": 30
+   }
+  },
+  "documento.pdf": {
+   "bytes": 17333,
+   "original": {
+    "entropia": 7.9373756007637954,
+    "qui2": 1781.2481970807135,
+    "qui2_p": 9.616818556754801e-227,
+    "correlacao": 0.07340488660511835,
+    "blocos_repetidos_pct": 0.09233610341643494
+   },
+   "vitral": {
+    "entropia": 7.99052880199487,
+    "qui2": 227.0816938787284,
+    "qui2_p": 0.8952016864522805,
+    "correlacao": -0.0029239487321372558,
+    "blocos_repetidos_pct": 0.0
+   },
+   "ecb": {
+    "entropia": 7.98844347003126,
+    "qui2": 277.8208679593721,
+    "qui2_p": 0.1559666217654072,
+    "correlacao": -0.0023298870778810207,
+    "blocos_repetidos_pct": 0.09233610341643494
+   },
+   "xor": {
+    "entropia": 7.982432829484635,
+    "qui2": 425.7612069462874,
+    "qui2_p": 1.0339829011875422e-10,
+    "correlacao": 0.00953132516344177,
+    "blocos_repetidos_pct": 0.0
+   },
+   "diferencial": {
+    "npcr": {
+     "media": 99.62268505163561,
+     "desvio": 0.05197960239705185,
+     "min": 99.52114463739687,
+     "max": 99.74037962268505,
+     "n": 30
+    },
+    "uaci": {
+     "media": 33.43819432424983,
+     "desvio": 0.18094174263557808,
+     "min": 33.01984314177987,
+     "max": 33.7824369925666,
+     "n": 30
+    },
+    "criticos": {
+     "npcr_min": 99.53143522303232,
+     "npcr_ideal": 99.609375,
+     "uaci_min": 33.1112632396704,
+     "uaci_max": 33.815820093662936,
+     "uaci_ideal": 33.46354166666667
+    },
+    "npcr_aprovados": 27,
+    "uaci_aprovados": 29
+   }
+  },
+  "arquivos.zip": {
+   "bytes": 16151,
+   "original": {
+    "entropia": 7.923026215281011,
+    "qui2": 2046.619961612284,
+    "qui2_p": 9.520329168734988e-277,
+    "correlacao": 0.045967205934377885,
+    "blocos_repetidos_pct": 0.49554013875123815
+   },
+   "vitral": {
+    "entropia": 7.98950302083737,
+    "qui2": 233.7132685282645,
+    "qui2_p": 0.8265041176069713,
+    "correlacao": -0.008494429577373144,
+    "blocos_repetidos_pct": 0.0
+   },
+   "ecb": {
+    "entropia": 7.98895997853295,
+    "qui2": 247.42120911793856,
+    "qui2_p": 0.6214831058383258,
+    "correlacao": -0.0027029945968888723,
+    "blocos_repetidos_pct": 0.49554013875123815
+   },
+   "xor": {
+    "entropia": 7.97791512059062,
+    "qui2": 512.0147978453347,
+    "qui2_p": 2.1257407356572625e-19,
+    "correlacao": -0.012705231558056283,
+    "blocos_repetidos_pct": 0.0
+   },
+   "diferencial": {
+    "npcr": {
+     "media": 99.60250139310259,
+     "desvio": 0.05198458800238327,
+     "min": 99.49229149897839,
+     "max": 99.67803851154727,
+     "n": 30
+    },
+    "uaci": {
+     "media": 33.47605583417607,
+     "desvio": 0.2077603335158768,
+     "min": 33.017879060484326,
+     "max": 33.89436215325706,
+     "n": 30
+    },
+    "criticos": {
+     "npcr_min": 99.52863359198359,
+     "npcr_ideal": 99.609375,
+     "uaci_min": 33.09860020396175,
+     "uaci_max": 33.828483129371584,
+     "uaci_ideal": 33.46354166666667
+    },
+    "npcr_aprovados": 27,
+    "uaci_aprovados": 28
+   }
+  }
+ },
+ "nist": {
+  "VITRAL-256": {
+   "frequência": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.7791877161648361
+   },
+   "frequência em blocos": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.3504852123233613
+   },
+   "corridas": {
+    "aprovadas": 99,
+    "uniformidade_p": 0.06688158777412664
+   },
+   "maior corrida": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.7791877161648361
+   },
+   "espectral (FFT)": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.5141236202310753
+   },
+   "somas acumuladas": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.7597562788720695
+   },
+   "somas acumuladas (inv.)": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.06282072061787972
+   },
+   "serial 1": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.6993125708664081
+   },
+   "serial 2": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.9114125268316791
+   },
+   "entropia aproximada": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.6163052249833652
+   },
+   "posto de matriz": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.7981390623953616
+   }
+  },
+  "AES-256": {
+   "frequência": {
+    "aprovadas": 99,
+    "uniformidade_p": 0.8676916714977051
+   },
+   "frequência em blocos": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.7399182920946537
+   },
+   "corridas": {
+    "aprovadas": 99,
+    "uniformidade_p": 0.04871597614764117
+   },
+   "maior corrida": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.8676916714977052
+   },
+   "espectral (FFT)": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.1718668374668437
+   },
+   "somas acumuladas": {
+    "aprovadas": 99,
+    "uniformidade_p": 0.18155663198089644
+   },
+   "somas acumuladas (inv.)": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.01671745927296671
+   },
+   "serial 1": {
+    "aprovadas": 99,
+    "uniformidade_p": 0.9114125268316791
+   },
+   "serial 2": {
+    "aprovadas": 98,
+    "uniformidade_p": 0.05898403054441944
+   },
+   "entropia aproximada": {
+    "aprovadas": 99,
+    "uniformidade_p": 0.5544204358728566
+   },
+   "posto de matriz": {
+    "aprovadas": 100,
+    "uniformidade_p": 0.6371194071693986
+   }
+  },
+  "XOR repetida": {
+   "frequência": {
+    "aprovadas": 1,
+    "uniformidade_p": 6.186801032394402e-188
+   },
+   "frequência em blocos": {
+    "aprovadas": 7,
+    "uniformidade_p": 3.996756752019098e-159
+   },
+   "corridas": {
+    "aprovadas": 0,
+    "uniformidade_p": 6.186801032394402e-188
+   },
+   "maior corrida": {
+    "aprovadas": 2,
+    "uniformidade_p": 1.140889941522001e-183
+   },
+   "espectral (FFT)": {
+    "aprovadas": 0,
+    "uniformidade_p": 6.186801032394402e-188
+   },
+   "somas acumuladas": {
+    "aprovadas": 1,
+    "uniformidade_p": 1.140889941522001e-183
+   },
+   "somas acumuladas (inv.)": {
+    "aprovadas": 2,
+    "uniformidade_p": 1.140889941522001e-183
+   },
+   "serial 1": {
+    "aprovadas": 0,
+    "uniformidade_p": 6.186801032394402e-188
+   },
+   "serial 2": {
+    "aprovadas": 0,
+    "uniformidade_p": 6.186801032394402e-188
+   },
+   "entropia aproximada": {
+    "aprovadas": 0,
+    "uniformidade_p": 6.186801032394402e-188
+   },
+   "posto de matriz": {
+    "aprovadas": 25,
+    "uniformidade_p": 4.089793688803687e-140
+   }
+  }
+ },
+ "forca_bruta": {
+  "espaco_chaves": 1.157920892373162e+77,
+  "chaves_por_s": 794.6467758544378,
+  "senhas_por_s_1_nucleo": 7.084093835598557,
+  "anos_chave_256_a_1e12_por_s": 1.834614945960976e+57,
+  "senhas": {
+   "PIN 4 dígitos": {
+    "espaco": 10000,
+    "anos_1_nucleo": 2.2365660696638364e-05,
+    "anos_1e6_por_s": 1.5844043907014476e-10
+   },
+   "6 minúsculas": {
+    "espaco": 308915776,
+    "anos_1_nucleo": 0.690910542985474,
+    "anos_1e6_por_s": 4.8944751185134486e-06
+   },
+   "8 alfanuméricos": {
+    "espaco": 218340105584896,
+    "anos_1_nucleo": 488332.07179799787,
+    "anos_1e6_por_s": 3.4593902195492685
+   },
+   "12 de 94 símbolos": {
+    "espaco": 475920314814253376475136,
+    "anos_1_nucleo": 1064427227977290.4,
+    "anos_1e6_por_s": 7540502364.157182
+   }
+  },
+  "ataque_real_pin3": {
+   "quebrado": true,
+   "segundos_espaco_todo": 32.15396206200057,
+   "nucleos": 8
+  }
+ },
+ "ia_10_sementes": {
+  "ia": {
+   "media": 0.965394101347038,
+   "desvio": 0.015792974456538416,
+   "min": 0.9348659003831418,
+   "max": 0.9901639344262295,
+   "n": 10
+  },
+  "regra_fixa": {
+   "media": 0.9659339698098257,
+   "desvio": 0.014430847669147132,
+   "min": 0.9469696969696969,
+   "max": 0.9908814589665653,
+   "n": 10
+  }
+ },
+ "quebra_xor": {
+  "tamanho_achado": 21,
+  "chave_recuperada": true
+ },
+ "integridade": {
+  "bits_testados": 6440,
+  "bits_rejeitados": 6440,
+  "senhas_erradas": 2000,
+  "senhas_rejeitadas": 2000,
+  "cifragens_distintas_de_1000": 1000
+ },
+ "esteganografia": {
+  "capa": "512x512",
+  "capacidade_bytes": 98300,
+  "tipos": {
+   "mensagem.txt": {
+    "cabe": true,
+    "usado_bytes": 41249,
+    "psnr_db": 54.92522836702097,
+    "recuperado": true
+   },
+   "imagem.bmp": {
+    "cabe": false,
+    "usado_bytes": 196709
+   },
+   "audio.wav": {
+    "cabe": true,
+    "usado_bytes": 48090,
+    "psnr_db": 54.26981165339308,
+    "recuperado": true
+   },
+   "tabela.csv": {
+    "cabe": true,
+    "usado_bytes": 49640,
+    "psnr_db": 54.109722750021916,
+    "recuperado": true
+   },
+   "documento.pdf": {
+    "cabe": true,
+    "usado_bytes": 17383,
+    "psnr_db": 58.670755408508924,
+    "recuperado": true
+   },
+   "arquivos.zip": {
+    "cabe": true,
+    "usado_bytes": 16200,
+    "psnr_db": 58.96115578472552,
+    "recuperado": true
+   }
+  }
+ },
+ "vazao_MB_s": {
+  "VITRAL-256": 14.276533888072573,
+  "AES-256": 16.449049984708964
+ },
+ "ia": {
+  "eventos": 212747,
+  "usuarios": 120,
+  "dias": 30,
+  "janelas": 23703,
+  "janelas_teste": 12274,
+  "anomalias_teste": 162,
+  "ia": {
+   "vp": 161,
+   "fp": 5,
+   "fn": 1,
+   "precisao": 0.9698795180722891,
+   "recall": 0.9938271604938271,
+   "f1": 0.9817073170731707
+  },
+  "regra_fixa": {
+   "vp": 161,
+   "fp": 3,
+   "fn": 1,
+   "precisao": 0.9817073170731707,
+   "recall": 0.9938271604938271,
+   "f1": 0.9877300613496932
+  },
+  "recall_por_tipo": {
+   "autenticação": 0.972972972972973,
+   "falha de decifragem": 1.0,
+   "arquivo alterado": 1.0,
+   "acesso atípico": 1.0,
+   "volume de eventos": 1.0
+  }
+ }
+}
