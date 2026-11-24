@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VITRAL-256 Dados</title>
+<title>VITRAL-256</title>
 <style>
 :root{--coffee-bean:#230903;--ebony:#656256;--muted-teal:#9ebc9f;--tan:#d3b88c;--white-smoke:#f4f2f3;
 --linha:color-mix(in srgb,var(--ebony) 25%,#fff);--teal-claro:color-mix(in srgb,var(--muted-teal) 30%,#fff);--tan-claro:color-mix(in srgb,var(--tan) 35%,#fff)}
@@ -59,6 +59,7 @@ figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-
 .kpi{background:var(--teal-claro);border-radius:12px;padding:14px 16px}.kpi b{display:block;font-size:25px}.kpi span{font-size:14px}
 .rola{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:15px}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--linha);white-space:nowrap}
 th{color:var(--ebony)}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.glossario{color:var(--ebony);margin:14px 0 24px;padding-left:20px}.glossario li{margin:4px 0}.glossario b{color:var(--coffee-bean)}
 .larga{grid-column:1/-1}.larga>.nota{margin:0 0 10px}
 .provas{list-style:none;margin:0;padding:0;display:grid;gap:8px}.provas li{display:flex;gap:10px;padding:10px 14px;border-radius:10px;background:var(--teal-claro)}.provas li.erro{background:var(--tan)}
 .provas li>div{min-width:0}.provas small{display:block;color:var(--ebony)}code{font-size:.9em;overflow-wrap:anywhere}
@@ -84,7 +85,7 @@ figure audio,figure video{display:block;width:100%;max-height:340px}
 <symbol id="i-sino" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></symbol>
 <symbol id="i-baixar" viewBox="0 0 24 24"><path d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></symbol>
 </svg>
-<header><h1>VITRAL-256 Dados</h1><p>Criptografia de texto, imagem, áudio, vídeo, documento ou qualquer arquivo, com análise de ataques</p></header>
+<header><h1>VITRAL-256</h1><p>Criptografia de texto, imagem, áudio, vídeo, documento ou qualquer arquivo, com análise de ataques</p></header>
 <main>
 <div class="topo"><nav role="tablist" id="abas"></nav><div id="msg" role="status" aria-live="polite"></div></div>
 
@@ -300,7 +301,7 @@ async function carregar(){let p;try{p=await (await fetch("/api/painel")).json()}
   else{const A=M.avalanche,S=M.sac_bic,I=M.tipos,ap=n=>Object.values(M.nist[n]).filter(t=>t.aprovadas>=96).length+"/"+Object.keys(M.nist[n]).length;
   $("m-saida").innerHTML=`<ul class="provas" style="margin-bottom:16px">${prova(M.cifra_sha256===p.cifra_sha256,M.cifra_sha256===p.cifra_sha256?"Métricas medidas neste mesmo cifra.py":"cifra.py mudou depois da medição: rode python metricas.py",`SHA-256 medido <code>${M.cifra_sha256}</code><br>SHA-256 em disco <code>${p.cifra_sha256}</code>`)}</ul><div class="grade">${kpi(num(A["VITRAL-256"].texto.media)+"%","avalanche do texto (ideal 50%)")+kpi(num(I["imagem.bmp"].vitral.entropia,4),"entropia da imagem cifrada (máx. 8)")+kpi(num(I["imagem.bmp"].diferencial.npcr.media)+"%","NPCR (ideal 99,61%)")+kpi(M.integridade.bits_rejeitados+"/"+M.integridade.bits_testados,"bits adulterados recusados")}</div>
   <h3>VITRAL-256 e AES-256</h3>`+tabela(["Métrica","VITRAL-256","AES-256","Ideal"],[["Avalanche, 1 bit do texto",...Object.values(A).map(x=>num(x.texto.media)+"%"),"50%"],["Avalanche, 1 bit da chave",...Object.values(A).map(x=>num(x.chave.media)+"%"),"50%"],["SAC (média)",...Object.values(S).map(x=>num(x.sac.media,4)),"0,5"],["BIC (média)",...Object.values(S).map(x=>num(x.bic_media,4)),num(S["VITRAL-256"].bic_media_ideal,4)],["Não linearidade da S-box",num(M.sbox.vitral_500.nao_linearidade.min,0),M.sbox.aes.nao_linearidade,"112"],["Uniformidade diferencial",num(M.sbox.vitral_500.uniformidade_diferencial.max,0),M.sbox.aes.uniformidade_diferencial,"4"],["NIST SP 800-22 (testes aprovados)",ap("VITRAL-256"),ap("AES-256"),"11/11"],["Vazão (MB/s, Python)",...Object.values(M.vazao_MB_s).map(x=>num(x,1)),"—"]])
-  +"<h3>Por tipo de dado</h3>"+tabela(["Arquivo","Tamanho","Entropia orig.","Entropia cifrada","Correl. orig.","Correl. cifrada","Repetidos orig.","ECB","VITRAL","NPCR","UACI"],Object.entries(I).map(([n,x])=>[n,tam(x.bytes),num(x.original.entropia,3),num(x.vitral.entropia,4),num(x.original.correlacao,3),num(x.vitral.correlacao,4),num(x.original.blocos_repetidos_pct,1)+"%",num(x.ecb.blocos_repetidos_pct,1)+"%",num(x.vitral.blocos_repetidos_pct,1)+"%",num(x.diferencial.npcr.media,3)+"%",num(x.diferencial.uaci.media,3)+"%"]))}
+  +'<ul class="glossario"><li><b>Avalanche:</b> quantos bits da saída mudam ao trocar 1 bit do texto ou da chave. O ideal é metade.</li><li><b>SAC:</b> chance de cada bit da saída mudar, medido um por um. O ideal é 0,5.</li><li><b>BIC:</b> se os bits da saída mudam juntos. Quanto menor, melhor; o ideal é o que o acaso daria com a mesma amostra.</li><li><b>Não linearidade:</b> distância da S-box a uma conta linear, fácil de quebrar. Quanto maior, melhor; 112 é o melhor valor conhecido para 8 bits.</li><li><b>Uniformidade diferencial:</b> o quanto uma troca na entrada da S-box é previsível na saída. Quanto menor, melhor; 4 é o melhor valor conhecido para 8 bits.</li><li><b>NIST SP 800-22:</b> se a sequência de bits parece sorteada. Cada estatística precisa de pelo menos 96 de 100 sequências aprovadas.</li><li><b>Vazão:</b> quantos megabytes são cifrados por segundo. Mede velocidade, não segurança.</li></ul><h3>Por tipo de dado</h3>'+tabela(["Arquivo","Tamanho","Entropia orig.","Entropia cifrada","Correl. orig.","Correl. cifrada","Repetidos orig.","ECB","VITRAL","NPCR","UACI"],Object.entries(I).map(([n,x])=>[n,tam(x.bytes),num(x.original.entropia,3),num(x.vitral.entropia,4),num(x.original.correlacao,3),num(x.vitral.correlacao,4),num(x.original.blocos_repetidos_pct,1)+"%",num(x.ecb.blocos_repetidos_pct,1)+"%",num(x.vitral.blocos_repetidos_pct,1)+"%",num(x.diferencial.npcr.media,3)+"%",num(x.diferencial.uaci.media,3)+"%"]))+'<ul class="glossario"><li><b>Entropia:</b> o quanto cada byte é imprevisível. O máximo é 8 bits por byte.</li><li><b>Correlação:</b> se um byte ajuda a prever o vizinho. O ideal, depois de cifrar, é 0.</li><li><b>Repetidos:</b> blocos de 16 bytes iguais a outro, que denunciam padrões. A coluna ECB é o modo fraco, para comparar; na VITRAL o ideal é 0%.</li><li><b>NPCR:</b> bytes do cifrado que mudam ao trocar 1 bit do arquivo. O ideal é 99,609%.</li><li><b>UACI:</b> tamanho médio dessa mudança. O ideal é 33,464%.</li></ul>'}
   const ia=p.ia;
   $("p-saida").innerHTML=`<div class="grade">${kpi(ia.eventos.toLocaleString("pt-BR"),"eventos simulados no SQLite")+kpi(ia.janelas.toLocaleString("pt-BR"),"janelas usuário × hora")+kpi(num(ia.ia.precisao*100,1)+"%","precisão da IA")+kpi(num(ia.ia.recall*100,1)+"%","anomalias detectadas")}</div>
   <h3>Eventos por dia (base simulada)</h3>${barras(p.serie)}<h3>Eventos reais deste painel</h3>${Object.keys(p.reais).length?tabela(["Tipo","Quantidade"],Object.entries(p.reais)):"<p class=nota>Nenhum ainda.</p>"}

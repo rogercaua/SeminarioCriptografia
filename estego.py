@@ -35,10 +35,10 @@ def extrair(estego):
     bits = estego.ravel() & 1
     n = struct.unpack(">I", np.packbits(bits[:32]).tobytes())[0] if bits.size >= 32 else 0
     if not cifra.CAB.size <= n <= bits.size // 8 - 4:
-        raise ValueError("nenhum dado da VITRAL-256 Dados escondido aqui")
+        raise ValueError("nenhum dado da VITRAL-256 escondido aqui")
     pacote = np.packbits(bits[32:32 + 8 * n]).tobytes()
     if pacote[:4] != cifra.MAGICO:
-        raise ValueError("nenhum dado da VITRAL-256 Dados escondido aqui")
+        raise ValueError("nenhum dado da VITRAL-256 escondido aqui")
     return pacote
 
 

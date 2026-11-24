@@ -21,7 +21,8 @@ Formato `VTR2`: `"VTR2"` (4 bytes), salt (16), IV/etiqueta (16) e o cifrado de `
 Chaves por PBKDF2 (600.000 iterações), IV sintético por HMAC-SHA-256 do conteúdo inteiro e modo contador.
 
 Arquivos: `cifra.py` (cifra e formato), `conferir.py` (segunda implementação), `exemplos.py` (um exemplo de cada tipo),
-`estego.py`, `eventos.py`, `metricas.py`, `nist.py`, `imagens.py`, `aes_ref.py`, `app.py`, `painel.html`, `testes.py`.
+`estego.py`, `eventos.py`, `metricas.py`, `nist.py`, `imagens.py`, `aes_ref.py`, `app.py`, `painel.html`, `testes.py`,
+`gerar_esquema.py` (gera o SVG do esquema; imagem pronta em `esquema_criptografico.png`).
 
 Conferir fora do painel (cerca de 40 KB/s): `.venv/bin/python conferir.py original cifrado.vtr`
 
@@ -29,15 +30,15 @@ Conferir fora do painel (cerca de 40 KB/s): `.venv/bin/python conferir.py origin
 
 | Tipo | Entropia original | Entropia cifrada | Blocos repetidos: original | ECB | VITRAL | NPCR médio |
 |---|---|---|---|---|---|---|
-| texto (TXT) | 4,299 | 7,9956 | 96,0% | 96,0% | 0% | 99,607% |
+| texto (TXT) | 4,299 | 7,9958 | 96,0% | 96,0% | 0% | 99,613% |
 | imagem (BMP) | 4,762 | 7,9990 | 89,1% | 89,1% | 0% | 99,606% |
-| áudio (WAV) | 7,484 | 7,9959 | 49,1% | 49,1% | 0% | 99,597% |
-| tabela (CSV) | 3,981 | 7,9964 | 0% | 0% | 0% | 99,605% |
-| PDF | 7,937 | 7,9901 | 0,1% | 0,1% | 0% | 99,619% |
-| ZIP | 7,923 | 7,9889 | 0,5% | 0,5% | 0% | 99,599% |
+| áudio (WAV) | 7,484 | 7,9966 | 49,1% | 49,1% | 0% | 99,605% |
+| tabela (CSV) | 3,981 | 7,9962 | 0% | 0% | 0% | 99,607% |
+| PDF | 7,937 | 7,9905 | 0,1% | 0,1% | 0% | 99,623% |
+| ZIP | 7,923 | 7,9895 | 0,5% | 0,5% | 0% | 99,603% |
 
-Nas 30 trocas por tipo, 335 de 360 medidas (93%) ficaram na faixa de aceitação de 5%. O áudio teve NPCR em 24 de 30,
-abaixo do esperado; repetido com 1.500 trocas, deu 95,2%, próximo do ideal de 95%.
+Nas 30 trocas por tipo, 342 de 360 medidas (95%) ficaram na faixa de aceitação de 5%. A imagem teve NPCR em 25 de 30,
+abaixo do esperado; repetida com 1.500 trocas, deu 94,3%, próximo do ideal de 95%.
 NIST SP 800-22: 11 de 11. Bits adulterados recusados: 6.440 de 6.440.
 
 ## Limites

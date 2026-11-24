@@ -1,4 +1,4 @@
-"""Painel local da VITRAL-256 Dados. Uso: python app.py  ->  http://127.0.0.1:8257"""
+"""Painel local da VITRAL-256. Uso: python app.py  ->  http://127.0.0.1:8257"""
 import base64
 import hashlib
 import io
@@ -270,5 +270,5 @@ class Servidor(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print(f"VITRAL-256 Dados em http://127.0.0.1:{PORTA}", flush=True)
+    print(f"VITRAL-256 em http://127.0.0.1:{PORTA}", flush=True)
     ThreadingHTTPServer(("127.0.0.1", PORTA), Servidor).serve_forever()
